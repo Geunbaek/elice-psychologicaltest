@@ -18,7 +18,7 @@ const BtnBox = ({ pnum, totalPage }) => {
         <button onClick={(e) => {
           e.preventDefault();
           history.goBack();
-        }}>이전</button>
+        }} className="btn">이전</button>
         <button onClick={(e) => {
           e.preventDefault();
           if (Number(pnum)+1 < Number(totalPage / 3)) {
@@ -26,7 +26,7 @@ const BtnBox = ({ pnum, totalPage }) => {
           } else {
             history.push('/result')
           }
-        }} disabled={check}>다음</button>
+        }} disabled={check} className="btn">다음</button>
       </div>
     </>
   )

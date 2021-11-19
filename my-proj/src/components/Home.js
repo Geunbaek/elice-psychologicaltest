@@ -8,6 +8,11 @@ function Home() {
   const dispatch = useInformDispatch();
   const history = useHistory();
 
+  // startBtn.addEventListener('mouseover', () => {
+  //   const alertDiv = document.getElementById("alert-message");
+  //   console.log(startBtn)
+  // })
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!gender || !name){
@@ -43,7 +48,10 @@ function Home() {
                   setGender(e.target.value)
                 }}/>여자</label>
               </div>
-              <button type='submit' disabled={!name||!gender} className="start-btn">검사 시작</button>
+              <div id="alert-message"></div>
+              <button type='submit' disabled={!name||!gender} className="btn" onMouseOver={(e)=> {
+                console.log(e)
+              } }>검사 시작</button>
             </div>
           </form>
         </div>

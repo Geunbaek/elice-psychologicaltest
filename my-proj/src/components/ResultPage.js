@@ -24,6 +24,7 @@ const ResultPage = () => {
         (async function() {
           const api_key = "b0562214ab9dda5498cef44a98118045"
           const date = new Date();
+
           const param = {
             "apikey": api_key,
             "qestrnSeq": "6",
@@ -33,8 +34,9 @@ const ResultPage = () => {
             "startDtm": date.getTime(),
             "answers": result,
           }
+          
           const url = `http://www.career.go.kr/inspct/openapi/test/report?apikey=${api_key}&qestrnSeq=6`
-          const res = await axios.post(url,param, {headers: {
+          const res = await axios.post(url, param, {headers: {
             "Content-Type": "application/json"
           }})
           setResultUrl(res.data.RESULT.url)
@@ -46,13 +48,13 @@ const ResultPage = () => {
   }, [result])
 
   return (
-    <>
+    <div className="wrapper">
       {(state.answers.length === 0 || state.answers.includes('0')) 
       ? <ErrorPage/>
-      : <><div>결과 페이지</div>
+      : <><div>검사가 완료되었습니다.</div>
         <a href={resultUrl} target="_blank" rel="noopener noreferrer">결과</a>
         <Link to="/">처음으로</Link></>}
-    </>
+    </div>
   )
 }
 export default ResultPage

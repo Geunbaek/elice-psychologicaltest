@@ -12,8 +12,22 @@
     animation: App-logo-spin infinite 20s linear;
   }
 } */
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');/* font-family: 'Roboto', sans-serif; */
+/* @font-face {
+  font-family: 'Roboto';
+  src: url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+} */
 
-/* COMMON */
+/* .App {
+  font-family: 'Roboto', sans-serif;
+} */
+
+* {
+  font-family: 'Do Hyeon', sans-serif;
+  background-color: black;
+  color: white;
+}
+
 .wrapper {
   min-height: 100vh;
   display: flex;
@@ -31,21 +45,28 @@
 }
 
 .btn-container {
+  width:75%;
   display: flex;
   justify-content:space-around;
+  margin-top: 20px;
 }
 
-.box-container {
+.question-container {
   width: 75%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: tomato;
-  padding: 10px;
+  background-color: grey;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  color: white;
 }
 .prev-questions-wrapper {
   padding: 30px 40px;
   background-color: gray;
+  border-radius: 10px;
+  color: white;
 }
 
 /* HOME */
@@ -59,6 +80,8 @@
 .form-wrapper input[type="text"]{
   height: 25px;
   border-radius: 5px;
+  text-align: center;
+  border: 1px solid white;
 }
 
 .form-wrapper .input-wrapper {
@@ -73,12 +96,16 @@
   margin-bottom: 20px;
 }
 
-.form-wrapper .start-btn {
+.btn {
   width: 75px;
   height: 25px;
   appearance: none;
-  border: 1px solid purple;
+  border: 1px solid white;
 }
+.btn:disabled{
+  background-color: black;
+}
+
 
 /* HEADER */
 .header-container {
@@ -95,13 +122,24 @@
   margin-bottom: 5px;
 }
 
-.header-container .state-bar {
+#state-bar {
   height: 10px;
   background-color: grey;
   border-radius: 5px;
 }
 
+#now-bar{
+  width: 0%;
+  height: 100%;
+  background-color: white;
+  border-radius: 5px;
+}
+
 /* PrevTestPage */
+.text-q {
+  text-align: center;
+}
+
 .text-wrapper {
   width: 100%;
   margin-bottom: 50px;
@@ -109,12 +147,40 @@
 
 .test-text {
   margin-bottom: 20px;
+  background-color: gray;
 }
 
 .box-wrapper .start-btn {
   margin-top: 40px;
 }
 
+.radios-container {
+  width:100%;
+  display: flex;
+  justify-content:space-around;
+  background-color: gray;
+}
+
+
+#radio-wrapper {
+  width: 150px;
+  text-align: center;
+  background-color: gray;
+
+}
+
+.question {
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: gray;
+}
+/* TestPage */
+
+/* .radio-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
 
 
 /* .App-header {

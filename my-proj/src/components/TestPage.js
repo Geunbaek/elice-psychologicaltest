@@ -12,12 +12,23 @@ const TestPage = () => {
 
   function getRatio() {
     const zeroCount = state.answers.reduce((acc, cur) => {
-      if(cur !== '0'){
-        return acc + 1;
-      }
-      return acc;
+      return cur !== '0' ? acc + 1 : acc ;
     }, 0) 
     return parseInt(zeroCount / state.answers.length * 100) ;
+  }
+
+  function barMove(prev, cur) {
+    const now = document.getElementById('now-bar');
+    let width = parseInt(prev);
+    const oper = setInterval(move, 20);
+    function move(){
+      if(width >= cur){
+        clearInterval(oper);
+      } else {
+        width++;
+        now.style.width = width + '%';
+      }
+    }
   }
 
   const [ratio, setRatio] = useState(
@@ -25,10 +36,13 @@ const TestPage = () => {
   )
 
   useEffect(() => {
+    const prevRatio = parseInt(ratio)
     setRatio(() => {
       return getRatio();
     })
+    barMove(prevRatio, getRatio())
   }, [state])
+
   if(state.answers.length === 0){
     history.push('/')
   }
