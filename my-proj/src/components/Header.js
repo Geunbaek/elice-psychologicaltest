@@ -1,10 +1,12 @@
-const Header = () => {
-  
+const Header = ({ text, progress }) => {
   return (
     <>
-      <header class="header-container">
-        <div>검사예시</div>
-        <div class="state-bar"></div>
+      <header className="header-container">
+        <div className="header-wrapper">
+          <div className="header-text">{ text }</div>
+          <div className="header-state">{ progress }%</div>
+        </div>
+        <div className="state-bar"></div>
       </header>
     </>
   )
