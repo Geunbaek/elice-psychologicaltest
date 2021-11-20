@@ -9,6 +9,9 @@ const TestPage = () => {
   const state = useInformState();
   const { id } = useParams();
   const history = useHistory();
+  const [ratio, setRatio] = useState(
+    getRatio()
+  )
 
   function getRatio() {
     const zeroCount = state.answers.reduce((acc, cur) => {
@@ -30,11 +33,7 @@ const TestPage = () => {
       }
     }
   }
-
-  const [ratio, setRatio] = useState(
-    getRatio()
-  )
-
+  
   useEffect(() => {
     const prevRatio = parseInt(ratio)
     setRatio(() => {
@@ -50,9 +49,10 @@ const TestPage = () => {
     <div className='wrapper'>
       <div className="box-wrapper">
         <Header text="검사진행" progress={ratio}/>
-        {state.question.slice(id*3, id*3+3).map((question, idx) => {
+        {state.question.slice(id*5, id*5+5).map((question, idx) => {
+          const qCount = 5;
           return (
-            <QuestionBox q={question} pnum={id} qnum={idx} key={Number(id) * 3 + Number(idx)}/>
+            <QuestionBox q={question} qIndex={id * qCount + idx} key={Number(id) * 5 + Number(idx)}/>
           )
         })}
         <BtnBox pnum={id} totalPage={state.question.length}/>

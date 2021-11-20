@@ -9,6 +9,7 @@ const TestPrevPage = () => {
   const state = useInformState();
   const dispatch = useInformDispatch();
   const [testCheck, setTestCheck] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     try{
@@ -26,10 +27,21 @@ const TestPrevPage = () => {
     }
   }, [dispatch]) 
 
-  const history = useHistory();
+  const makeMessage = (e, tag, message) => {
+    e.preventDefault();
+    tag.innerHTML= message;
+    setTimeout(() => {
+      tag.innerHTML="";
+    }, 1500)
+  }
 
-  const handleClick= () => {
-    history.push("/testPage/0")
+  const pushAlert = (e) => {
+    const tag = document.getElementById('alert-message');
+    if(testCheck) {
+      makeMessage(e, tag, "위의 항목을 선택해주세요!")
+    } else{
+      history.push("/testPage/0")
+    }
   }
 
   return (
@@ -57,8 +69,9 @@ const TestPrevPage = () => {
               </label>
             </div>
           </div>
+          <div id="alert-message"></div>
           <div className='btn-container'>
-            <button onClick={handleClick} disabled={testCheck} className="btn">검사시작</button>
+            <button onClick={pushAlert} className="btn">검사시작</button>
           </div>
         </div>}
     </div>
