@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useInformState, useInformDispatch } from './InformProvider'
 import ErrorPage from './ErrorPage';
 import axios from 'axios';
+import { apiKey } from '../data/data';
 
 const TestPrevPage = () => {
   const state = useInformState();
@@ -14,8 +15,7 @@ const TestPrevPage = () => {
   useEffect(() => {
     try{
       (async function(){
-        const apikey = 'b0562214ab9dda5498cef44a98118045'
-        const url = `http://www.career.go.kr/inspct/openapi/test/questions?apikey=${apikey}&q=6`
+        const url = `http://www.career.go.kr/inspct/openapi/test/questions?apikey=${apiKey}&q=6`
         const res = await axios.get(url)
         dispatch({
           type: "INSERT_QUESTION",

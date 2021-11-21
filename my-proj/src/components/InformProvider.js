@@ -4,16 +4,13 @@ const initialState = {
   user: {
     name: "", 
     gender: "",
+    now: "",
   },
-  questionInfo : {
-    1: "능력발휘",
-    2: "자율성",
-    3: "보수",
-    4: "안정성",
-    5: "사회적 인정",
-    6: "사회봉사",
-    7: "자기계발",
-    8: "창의성"
+  fin: {
+    most : [{}, {}],
+    worst : [{}, {}],
+    jobs: {},
+    majors: {}
   },
   question : [
 
@@ -24,10 +21,6 @@ const initialState = {
   score : [
 
   ],
-  fin: {
-    most : [],
-    worst : []
-  }
 }
 
 function reducer(state, action){
@@ -39,11 +32,13 @@ function reducer(state, action){
         answers : new Array(action.question.RESULT.length).fill('0')
       }
     case "INSERT_USER":
+      let date = new Date();
       return {
         ...state,
         user : {
           name: action.name,
-          gender: action.gender
+          gender: action.gender,
+          now: date.toLocaleDateString(),
         }
       }
     case "ADD_ANSWER":
@@ -59,7 +54,19 @@ function reducer(state, action){
         score: action.scores,
         fin : {
           most : action.sortedScores.slice(-2),
-          worst: action.sortedScores.slice(0, 2)
+          worst: action.sortedScores.slice(0, 2),
+          jobs: {...state.fin.jobs},
+          majors: {...state.fin.majors}
+        }
+      }
+    case "ADD_JOB_MAJOR":
+      return {
+        ...state,
+        fin : {
+          most : [...state.fin.most],
+          worst: [...state.fin.worst],
+          jobs: action.jobs,
+          majors: action.majors
         }
       }
     case "RESET":
