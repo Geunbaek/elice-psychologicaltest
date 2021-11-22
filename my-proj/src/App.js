@@ -6,12 +6,14 @@ import TestPage from "./components/TestPage";
 import { InformProvider } from "./components/InformProvider";
 import ResultPage from './components/ResultPage';
 import ResultTablePage from "./components/ResultTablePage"
+import ErrorPage from './components/ErrorPage';
 
 function App() {
   return (
     <>
       <InformProvider>
         <Switch>
+          <Route path='/errorPage' component={ErrorPage}/>
           <Route path='/resultTablePage' component={ResultTablePage}/>
           <Route path='/result' component={ResultPage}/>
           <Route path='/testPage/:id' component={TestPage}/>

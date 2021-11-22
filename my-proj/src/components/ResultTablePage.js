@@ -30,20 +30,30 @@ const ResultTablePage = () => {
         const majorData = majorRes.data
 
         jobData.sort((a, b) => {
-          if(a[1] > b[1]){
-            return -1;
-          } else if (a[1] < b[1]){
+          if(a[2] > b[2]){
             return 1;
+          } else if (a[2] < b[2]){
+            return -1;
           } else {
+            if(a[1] > b[1]){
+              return 1;
+            } else if (a[1] < b[1]){
+              return -1;
+            }
             return 0;
           }
         })
         majorData.sort((a, b) => {
-          if(a[1] > b[1]){
-            return -1;
-          } else if (a[1] < b[1]){
+          if(a[2] > b[2]){
             return 1;
+          } else if (a[2] < b[2]){
+            return -1;
           } else {
+            if(a[1] > b[1]){
+              return 1;
+            } else if (a[1] < b[1]){
+              return -1;
+            }
             return 0;
           }
         })
@@ -80,12 +90,14 @@ const ResultTablePage = () => {
       return;
     }
   }, [])
-
+  if(state.answers.length === 0 || state.answers.includes('0')){
+    history.push('/errorPage');
+  }
   return (
     <>
       <div className="wrapper">
         <div className="box-wrapper">
-          <div className="user-info" id="user-info">{`이름 : ${state.user.name} 성별 : ${state.user.gender === 'man' ? "남자" : "여자"} 날짜 : ${state.user.now}`}</div>
+          <div className="user-info">{`이름 : ${state.user.name} 성별 : ${state.user.gender === 'man' ? "남자" : "여자"} 날짜 : ${state.user.now}`}</div>
           <div className="tables-wrapper">
             {state.score.map((s) => {
               return (
@@ -115,8 +127,7 @@ const ResultTablePage = () => {
             }} className="btn">다시 검사하기</button>
           </div>
         </div>
-      </div>
-     
+      </div> 
     </>
   )
 }

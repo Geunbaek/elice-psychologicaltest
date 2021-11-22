@@ -43,7 +43,7 @@ const TestPage = () => {
   }, [state])
 
   if(state.answers.length === 0){
-    history.push('/')
+    history.push('/errorPage')
   }
   return (
     <div className='wrapper'>

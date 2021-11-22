@@ -193,6 +193,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 /* TableRow */
@@ -210,8 +211,8 @@
   display: flex;
   justify-content: space-between;
   text-align: left;
-  line-height: 100%;
-  margin: 20px;
+  padding: 20px;
+  border : 2px solid white;
 }
 
 .table-row .table-row-title {
@@ -223,5 +224,4 @@
 
 .table-row .table-row-content {
   width : 80%;
-
 }

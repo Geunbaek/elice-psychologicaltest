@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useInformState, useInformDispatch} from './InformProvider'
 import { useHistory } from "react-router-dom";
-import ErrorPage from './ErrorPage';
 import axios from 'axios';
 import { apiKey } from '../data/data';
 import { questionInfo } from '../data/data';
@@ -71,25 +70,27 @@ const ResultPage = () => {
       return;
     }
   }, [])
- 
+  
+  if(state.answers.length === 0 || state.answers.includes('0')){
+    history.push('/errorPage');
+  }
+
   return (
     <>
-      {(state.answers.length === 0 || state.answers.includes('0')) 
-      ? <ErrorPage/> 
-      : <div className="wrapper">
-          <div className="box-wrapper">
-            <h1>검사가 완료되었습니다.</h1>
-            <div className="result-message">{`직업생활과 관련하여 ${state.user.name}님은 ${mostWorst.most[0].type}(와)과 ${mostWorst.most[1].type}(을)를 가장 중요하게 생각합니다.
-            반면에 ${mostWorst.worst[0].type}, ${mostWorst.worst[1].type}은 상대적으로 덜 중요하게 생각합니다.`}</div>
-  
-            <div className="btn-container">
-              <button onClick={() => {
-                history.push('/resultTablePage');
-              }} className="btn">결과보기</button>
-            </div>
-            <a href={resultUrl} target="_blank" rel="noopener noreferrer">URL로 결과보기</a>
+      <div className="wrapper">
+        <div className="box-wrapper">
+          <h1>검사가 완료되었습니다.</h1>
+          <div className="result-message">{`직업생활과 관련하여 ${state.user.name}님은 ${mostWorst.most[0].type}(와)과 ${mostWorst.most[1].type}(을)를 가장 중요하게 생각합니다.
+          반면에 ${mostWorst.worst[0].type}, ${mostWorst.worst[1].type}은 상대적으로 덜 중요하게 생각합니다.`}</div>
+
+          <div className="btn-container">
+            <button onClick={() => {
+              history.push('/resultTablePage');
+            }} className="btn">결과보기</button>
           </div>
-        </div>}
+          <a href={resultUrl} target="_blank" rel="noopener noreferrer">URL로 결과보기</a>
+        </div>
+      </div>
     </>
   )
 }

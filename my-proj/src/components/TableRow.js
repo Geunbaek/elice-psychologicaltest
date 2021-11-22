@@ -5,7 +5,7 @@ const TableRow = ({title, contents}) => {
     } 
     return acc + '\n' + cur;
   },"")
-  console.log(text)
+
   return (
     <>
       <div className="table-row">
