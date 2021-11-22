@@ -4,11 +4,15 @@ import { useHistory } from "react-router-dom";
 import { useInformState, useInformDispatch } from './InformProvider'
 import axios from 'axios';
 import { apiKey } from '../data/data';
+import LoadingPage from './LoadingPage';
+import ErrorPage from './ErrorPage';
 
 const TestPrevPage = () => {
   const state = useInformState();
   const dispatch = useInformDispatch();
   const [testCheck, setTestCheck] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -16,12 +20,14 @@ const TestPrevPage = () => {
       (async function(){
         const url = `http://www.career.go.kr/inspct/openapi/test/questions?apikey=${apiKey}&q=6`
         const res = await axios.get(url)
-        dispatch({
+        await dispatch({
           type: "INSERT_QUESTION",
           question : res.data
         })
+        setLoading(false);
       })();
     } catch {
+      setError(true);
       return;
     }
   }, [dispatch]) 
@@ -43,9 +49,8 @@ const TestPrevPage = () => {
     }
   }
 
-  if(!state.user.name || !state.user.gender){
-    history.push('/errorPage')
-  }
+  if(loading) return <LoadingPage />
+  else if(error || (!state.user.name || !state.user.gender)) return <ErrorPage />
 
   return (
     <div className="wrapper">

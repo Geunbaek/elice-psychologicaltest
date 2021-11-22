@@ -1,15 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useHistory } from "react-router-dom";
 import { useInformState, useInformDispatch } from './InformProvider'
 import Table from "./Table";
 import TableRow from './TableRow';
 import axios from 'axios';
 import { majorInfo, jobInfo } from '../data/data';
+import LoadingPage from './LoadingPage';
+import ErrorPage from './ErrorPage';
 
 const ResultTablePage = () => {
   const state = useInformState();
   const dispatch = useInformDispatch();
   const history = useHistory();
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -84,15 +89,15 @@ const ResultTablePage = () => {
           jobs : jobs,
           majors : majors
         })
-
+        setLoading(false)
       })();
     } catch {
-      return;
+      setError(true)
     }
   }, [])
-  if(state.answers.length === 0 || state.answers.includes('0')){
-    history.push('/errorPage');
-  }
+
+  if(loading) return <LoadingPage />
+  else if(error || (state.answers.length === 0 || state.answers.includes('0'))) return <ErrorPage />
   return (
     <>
       <div className="wrapper">

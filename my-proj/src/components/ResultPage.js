@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import { useInformState, useInformDispatch} from './InformProvider'
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
+import ErrorPage from './ErrorPage';
+import LoadingPage from './LoadingPage';
 import { apiKey } from '../data/data';
 import { questionInfo } from '../data/data';
 
@@ -14,6 +16,9 @@ const ResultPage = () => {
     most: [{}, {}],
     worst: [{}, {}]
   });
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const result = state.answers.reduce((acc, cur, idx) => {
     return acc + `B${idx+1}=${cur} `;
@@ -65,15 +70,15 @@ const ResultPage = () => {
             worst: sortedScore.slice(0, 2)
           }
         })
+        setLoading(false);
       })();
     } catch(e){
-      return;
+      setError(true);
     }
   }, [])
   
-  if(state.answers.length === 0 || state.answers.includes('0')){
-    history.push('/errorPage');
-  }
+  if(loading) return <LoadingPage />
+  else if(error || (state.answers.length === 0 || state.answers.includes('0'))) return <ErrorPage />
 
   return (
     <>
