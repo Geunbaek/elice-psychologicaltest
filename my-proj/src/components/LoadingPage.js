@@ -3,7 +3,7 @@ const LoadingPage = () => {
     <>
       <div className="wrapper">
         <div className="box-wrapper">
-          <div>로딩중 ...</div> 
+          <div className="loading-message">로딩중 ...</div> 
         </div>
       </div>
     </>

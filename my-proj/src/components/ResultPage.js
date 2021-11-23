@@ -25,6 +25,9 @@ const ResultPage = () => {
   }, '');
 
   useEffect(() => { 
+    if((state.answers.length === 0 || state.answers.includes('0'))){
+      return <ErrorPage/>
+    }
     try {
       (async function() {
         const date = new Date();
@@ -77,8 +80,12 @@ const ResultPage = () => {
     }
   }, [])
   
+  if((state.answers.length === 0 || state.answers.includes('0'))){
+    return <ErrorPage />
+  }
+
   if(loading) return <LoadingPage />
-  else if(error || (state.answers.length === 0 || state.answers.includes('0'))) return <ErrorPage />
+  else if(error) return <ErrorPage />
 
   return (
     <>

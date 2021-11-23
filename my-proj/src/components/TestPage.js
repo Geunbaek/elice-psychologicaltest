@@ -1,15 +1,15 @@
 import Header from './Header';
 import { useInformState } from './InformProvider'
 import React, {useEffect, useState} from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import BtnBox from './BtnBox';
 import QuestionBox from './QuestionBox';
 import LoadingPage from './LoadingPage';
-import ErrorPage from './ErrorPage';
 
 const TestPage = () => {
   const state = useInformState();
   const { id } = useParams();
+  const history = useHistory();
   const [ratio, setRatio] = useState(
     getRatio()
   )
@@ -38,17 +38,23 @@ const TestPage = () => {
   
   useEffect(() => {
     const prevRatio = parseInt(ratio)
+    const curRatio = getRatio();
     setRatio(() => {
-      return getRatio();
+      return curRatio;
     })
-    barMove(prevRatio, getRatio())
+    barMove(prevRatio, curRatio)
     if(loading){
       setLoading(false)
     }
+  
   }, [state])
 
-  if(loading) return <LoadingPage />
-  else if(state.answers.length === 0) return <ErrorPage />
+  if(state.answers.length === 0) {
+    history.push('/')  
+  } else if(loading){
+    return <LoadingPage />
+  }
+
   return (
     <div className='wrapper'>
       <div className="box-wrapper">

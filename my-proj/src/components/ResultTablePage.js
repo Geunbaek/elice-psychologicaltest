@@ -18,9 +18,6 @@ const ResultTablePage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (state.fin.jobs.length === 0){
-      return;
-    }
     try{
       (async function(){
         const jobUrl = `https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1=${state.fin.most[0].no}&no2=${state.fin.most[1].no}`;
@@ -95,9 +92,9 @@ const ResultTablePage = () => {
       setError(true)
     }
   }, [])
-
-  if(loading) return <LoadingPage />
-  else if(error || (state.answers.length === 0 || state.answers.includes('0'))) return <ErrorPage />
+  
+  if(error || (state.answers.length === 0 || state.answers.includes('0'))) return <ErrorPage />
+  else if(loading) return <LoadingPage />
   return (
     <>
       <div className="wrapper">

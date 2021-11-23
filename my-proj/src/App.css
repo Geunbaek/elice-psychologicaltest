@@ -10,7 +10,7 @@
 }
 
 .wrapper {
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -224,4 +224,9 @@
 
 .table-row .table-row-content {
   width : 80%;
+}
+
+/* LoadingPage */
+.loading-message {
+  font-size: 20px;
 }
