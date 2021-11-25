@@ -45,7 +45,7 @@
 }
 .prev-questions-wrapper {
   padding: 30px 40px;
-  background-color: gray;
+  background-color: grey;
   border-radius: 10px;
   color: white;
 }
@@ -229,4 +229,9 @@
 /* LoadingPage */
 .loading-message {
   font-size: 20px;
+}
+
+/* ErrorPage */
+.error-message {
+  font-size : 20px;
 }

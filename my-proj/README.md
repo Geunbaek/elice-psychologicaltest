@@ -69,3 +69,6 @@
 
 * 2021.11.22
   - 로딩 페이지 구현
+
+* 2021.11.24
+  - 배포 완료 [주소](http://elice-kdt-3rd-vm-023.koreacentral.cloudapp.azure.com/)
