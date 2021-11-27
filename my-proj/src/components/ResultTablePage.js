@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory } from "react-router-dom";
 import { useInformState, useInformDispatch } from './InformProvider'
-import Table from "./Table";
-import TableRow from './TableRow';
+import Graph from "./Graph";
+import Table from './Table';
 import axios from 'axios';
 import { majorInfo, jobInfo } from '../data/data';
 import LoadingPage from './LoadingPage';
@@ -99,11 +99,11 @@ const ResultTablePage = () => {
     <>
       <div className="wrapper">
         <div className="box-wrapper">
-          <div className="user-info">{`이름 : ${state.user.name} 성별 : ${state.user.gender === 'man' ? "남자" : "여자"} 날짜 : ${state.user.now}`}</div>
+          <div className="user-info">{`이름 : ${state.user.name}  |  성별 : ${state.user.gender === 'man' ? "남자" : "여자"}  |  날짜 : ${state.user.now}`}</div>
           <div className="tables-wrapper">
             {state.score.map((s) => {
               return (
-                <Table key={s.no} idx={s.no} count={parseInt(s.count) + 1} text={s.type} />
+                <Graph key={s.no} idx={s.no} count={parseInt(s.count) + 1} text={s.type} />
               )
             })}
           </div>
@@ -111,7 +111,7 @@ const ResultTablePage = () => {
           <div className="table-rows-wrapper">
             {Object.keys(state.fin.jobs).map(key => {
               return (
-                <TableRow title={key} contents={state.fin.jobs[key]}/>
+                <Table title={key} contents={state.fin.jobs[key]}/>
               );
             })}
           </div>
@@ -119,7 +119,7 @@ const ResultTablePage = () => {
           <div className="table-rows-wrapper">
             {Object.keys(state.fin.majors).map(key => {
               return (
-                <TableRow title={key} contents={state.fin.majors[key]}/>
+                <Table title={key} contents={state.fin.majors[key]}/>
               )
             })}
           </div>

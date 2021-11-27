@@ -1,33 +1,19 @@
-import React, {useEffect} from 'react';
-
-const Table = ({ idx, count, text}) => {
-
-  useEffect(() => {
-    graphMove(count)
-  }, [])
-
-  function graphMove(cur) {
-    const tag = document.getElementsByClassName(`table${idx}`)
-    let width = 0;
-    const oper = setInterval(move, 40);
-    function move(){
-      if(width >= cur){
-        clearInterval(oper);
-      } else {
-        width++;
-        tag[0].style.height = `${width * 10}%`;
-      }
-    }
-  }
+const Table = ({title, contents}) => {
+  const text = contents.reduce((acc, cur, idx)=> {
+    if(idx === 0 || idx % 4 !== 0){
+      return acc + ' ' + cur;
+    } 
+    return acc + '\n' + cur;
+  },"")
 
   return (
     <>
-      <div className={`table table${idx}`} onMouseOver={(e) => {
-        
-      }}>
-        <div className="table-col-name">{text}</div>
+      <div className="table-row">
+        <div className="table-row-title">{title}</div>
+        <div className="table-row-content">{text}</div>
       </div>
     </>
-  )
+  );
 }
+
 export default Table;

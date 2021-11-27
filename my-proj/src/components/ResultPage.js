@@ -11,7 +11,6 @@ const ResultPage = () => {
   const state = useInformState();
   const dispatch = useInformDispatch();
   const history = useHistory();
-  const [resultUrl, setResultUrl] = useState("");
   const [mostWorst, setMostWorst] = useState({
     most: [{}, {}],
     worst: [{}, {}]
@@ -53,7 +52,6 @@ const ResultPage = () => {
           "Content-Type": "application/json"
         }})
 
-        setResultUrl(res.data.RESULT.url)
         const score = scoreRes.data.result.wonScore.split(' ').filter(el=>el);
         const scores = score.map(s => {
           s = s.split("=");
@@ -92,15 +90,15 @@ const ResultPage = () => {
       <div className="wrapper">
         <div className="box-wrapper">
           <h1>검사가 완료되었습니다.</h1>
-          <div className="result-message">{`직업생활과 관련하여 ${state.user.name}님은 ${mostWorst.most[0].type}(와)과 ${mostWorst.most[1].type}(을)를 가장 중요하게 생각합니다.
-          반면에 ${mostWorst.worst[0].type}, ${mostWorst.worst[1].type}은 상대적으로 덜 중요하게 생각합니다.`}</div>
+          <div className="result-message">직업생활과 관련하여 {`${state.user.name}`}님은 <span className="emphasis">{`${mostWorst.most[0].type}`}</span>(와)과 <span className="emphasis">{`${mostWorst.most[1].type}`}</span>(을)를 가장 중요하게 생각합니다.
+          <br />반면에 {`${mostWorst.worst[0].type}`}, {`${mostWorst.worst[1].type}`}은 상대적으로 덜 중요하게 생각합니다.</div>
 
           <div className="btn-container">
             <button onClick={() => {
               history.push('/resultTablePage');
             }} className="btn">결과보기</button>
           </div>
-          <a href={resultUrl} target="_blank" rel="noopener noreferrer">URL로 결과보기</a>
+
         </div>
       </div>
     </>

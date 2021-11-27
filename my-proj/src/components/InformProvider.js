@@ -7,8 +7,8 @@ const initialState = {
     now: "",
   },
   fin: {
-    most : [{}, {}],
-    worst : [{}, {}],
+    most : [],
+    worst : [],
     jobs: {},
     majors: {}
   },
