@@ -1,8 +1,10 @@
-import { useInformState, useInformDispatch } from './InformProvider'
+import { useInformState, useInformDispatch } from '../InformProvider'
 
 const QuestionBox = ({ q, qIndex }) => {
   const state = useInformState();
   const dispatch = useInformDispatch();
+
+
   return (
     <>
       <div className="question-container">

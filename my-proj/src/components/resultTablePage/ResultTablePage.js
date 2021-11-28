@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory } from "react-router-dom";
-import { useInformState, useInformDispatch } from './InformProvider'
+import { useInformState, useInformDispatch } from '../InformProvider'
 import Graph from "./Graph";
 import Table from './Table';
 import axios from 'axios';
-import { majorInfo, jobInfo } from '../data/data';
-import LoadingPage from './LoadingPage';
-import ErrorPage from './ErrorPage';
+import { majorInfo, jobInfo } from '../../data/data';
+import LoadingPage from '../etcPage/LoadingPage';
+import ErrorPage from '../etcPage/ErrorPage';
 
 const ResultTablePage = () => {
   const state = useInformState();

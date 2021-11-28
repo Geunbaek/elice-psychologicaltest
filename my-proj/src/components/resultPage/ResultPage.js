@@ -1,20 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import { useInformState, useInformDispatch} from './InformProvider'
+import { useInformState, useInformDispatch} from '../InformProvider'
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
-import ErrorPage from './ErrorPage';
-import LoadingPage from './LoadingPage';
-import { apiKey } from '../data/data';
-import { questionInfo } from '../data/data';
+import ErrorPage from '../etcPage/ErrorPage';
+import LoadingPage from '../etcPage/LoadingPage';
+import { apiKey } from '../../data/data';
+import { questionInfo } from '../../data/data';
 
 const ResultPage = () => {
   const state = useInformState();
   const dispatch = useInformDispatch();
   const history = useHistory();
-  const [mostWorst, setMostWorst] = useState({
-    most: [{}, {}],
-    worst: [{}, {}]
-  });
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -65,12 +61,6 @@ const ResultPage = () => {
           sortedScores: sortedScore
         })
 
-        setMostWorst(() => {
-          return {
-            most: sortedScore.slice(-2),
-            worst: sortedScore.slice(0, 2)
-          }
-        })
         setLoading(false);
       })();
     } catch(e){
@@ -90,8 +80,8 @@ const ResultPage = () => {
       <div className="wrapper">
         <div className="box-wrapper">
           <h1>검사가 완료되었습니다.</h1>
-          <div className="result-message">직업생활과 관련하여 {`${state.user.name}`}님은 <span className="emphasis">{`${mostWorst.most[0].type}`}</span>(와)과 <span className="emphasis">{`${mostWorst.most[1].type}`}</span>(을)를 가장 중요하게 생각합니다.
-          <br />반면에 {`${mostWorst.worst[0].type}`}, {`${mostWorst.worst[1].type}`}은 상대적으로 덜 중요하게 생각합니다.</div>
+          <div className="result-message">직업생활과 관련하여 {`${state.user.name}`}님은 <span className="emphasis">{`${state.fin.most[0].type}`}</span>(와)과 <span className="emphasis">{`${state.fin.most[1].type}`}</span>(을)를 가장 중요하게 생각합니다.
+          <br />반면에 {`${state.fin.worst[0].type}`}, {`${state.fin.worst[1].type}`}은 상대적으로 덜 중요하게 생각합니다.</div>
 
           <div className="btn-container">
             <button onClick={() => {

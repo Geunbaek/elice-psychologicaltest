@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory } from "react-router-dom";
-import { useInformState} from './InformProvider'
+import { useInformState} from '../InformProvider'
 
 const BtnBox = ({ pnum, totalPage }) => {
   const history = useHistory();

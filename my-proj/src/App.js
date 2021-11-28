@@ -1,12 +1,12 @@
 import './App.css';
 import { Route,  Switch } from "react-router-dom";
-import Home from "./components/Home";
-import TestPrevPage from "./components/TestPrevPage";
-import TestPage from "./components/TestPage";
+import Home from "./components/homePage/Home";
+import TestPrevPage from "./components/testPrevPage/TestPrevPage";
+import TestPage from "./components/testPage/TestPage";
 import { InformProvider } from "./components/InformProvider";
-import ResultPage from './components/ResultPage';
-import ResultTablePage from "./components/ResultTablePage"
-import ErrorPage from './components/ErrorPage';
+import ResultPage from './components/resultPage/ResultPage';
+import ResultTablePage from "./components/resultTablePage/ResultTablePage"
+import ErrorPage from './components/etcPage/ErrorPage';
 
 function App() {
   return (

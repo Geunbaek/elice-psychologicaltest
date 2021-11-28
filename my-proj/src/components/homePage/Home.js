@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
-import { useInformDispatch } from './InformProvider'
+import { useInformDispatch } from '../InformProvider'
 
 function Home() {
   const [name, setName] = useState("");

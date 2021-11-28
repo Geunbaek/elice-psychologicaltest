@@ -1,10 +1,10 @@
 import Header from './Header';
-import { useInformState } from './InformProvider'
+import { useInformState } from '../InformProvider'
 import React, {useEffect, useState} from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import BtnBox from './BtnBox';
 import QuestionBox from './QuestionBox';
-import LoadingPage from './LoadingPage';
+import LoadingPage from '../etcPage/LoadingPage';
 
 const TestPage = () => {
   const state = useInformState();

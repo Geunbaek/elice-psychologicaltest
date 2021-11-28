@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import Header from './Header';
+import Header from '../testPage/Header';
 import { useHistory } from "react-router-dom";
-import { useInformState, useInformDispatch } from './InformProvider'
+import { useInformState, useInformDispatch } from '../InformProvider'
 import axios from 'axios';
-import { apiKey } from '../data/data';
-import LoadingPage from './LoadingPage';
-import ErrorPage from './ErrorPage';
+import { apiKey } from '../../data/data';
+import LoadingPage from '../etcPage/LoadingPage';
+import ErrorPage from '../etcPage/ErrorPage';
 
 const TestPrevPage = () => {
   const state = useInformState();
