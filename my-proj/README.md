@@ -72,3 +72,4 @@
 
 * 2021.11.24
   - 배포 완료 [주소](http://elice-kdt-3rd-vm-023.koreacentral.cloudapp.azure.com/)
+  - 배포2 [주소](http://15.165.115.158/)
